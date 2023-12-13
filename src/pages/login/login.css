@@ -1,0 +1,28 @@
+.login-component-middle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+  }
+  
+.login-component-middle-inner {
+    background-color: rgba(205, 205, 205, 1);
+    padding: 3rem 2rem;
+    border-radius: 0.5rem;
+    min-width: 320px;
+    width: 30%;
+    position: absolute;
+    top: 30%;
+}
+.login-component-form-header, .login-component-form-button{
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+}
+#login-component-form-button{
+    background-color: rgba(255, 0, 0, 0.5);
+    border-color: rgba(255, 0, 0, 0.5);
+    padding: .5rem 2rem;
+    border-radius: 1.5rem;
+    color: black;
+}
