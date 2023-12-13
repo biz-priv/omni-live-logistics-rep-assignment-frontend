@@ -1,0 +1,22 @@
+.dashoard-component{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+}
+.dashboard-component-inner{
+
+    border-radius: 0.5rem;
+    min-width: 320px;
+    width: 80%;
+    position: absolute;
+    top: 30%;
+}
+#column-eligibilty, #column-in-office{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#column-eligibilty img{
+    width: 1.5rem;
+}
