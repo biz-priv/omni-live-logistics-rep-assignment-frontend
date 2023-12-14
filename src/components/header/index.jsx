@@ -1,13 +1,18 @@
 import mainLogo from "../../assets/icons/logo.svg";
+import React, { useState } from "react";
 import "./header.css";
 import Button from "react-bootstrap/Button";
 import { useAuthenticator } from "@aws-amplify/ui-react";
 import { useNavigate } from "react-router-dom";
+import Loader from "../loader";
 
 function Header() {
+  const [loader, setLoader] = useState(false);
   const { user, signOut } = useAuthenticator((context) => [context.user]);
   const navigate = useNavigate();
+
   const handleSignOut = () => {
+    setLoader(true);
     signOut();
     navigate("/");
   };
@@ -29,6 +34,7 @@ function Header() {
           </Button>
         )}
       </span>
+      <Loader show={loader} />
     </div>
   );
 }

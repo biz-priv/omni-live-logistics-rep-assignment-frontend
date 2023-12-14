@@ -1,7 +1,8 @@
-import { Header } from "../../components";
+import { Header, Loader } from "../../components";
+import { useEffect, useState } from "react";
 import "./login.css";
 import { Amplify } from "aws-amplify";
-import { Authenticator } from "@aws-amplify/ui-react";
+import { Authenticator, useAuthenticator } from "@aws-amplify/ui-react";
 import { Navigate } from "react-router-dom";
 import "@aws-amplify/ui-react/styles.css";
 
@@ -21,6 +22,16 @@ Amplify.configure({
 });
 
 function Login() {
+  const { authStatus } = useAuthenticator((context) => [context.authStatus]);
+  const [loader, setLoader] = useState(false);
+
+  useEffect(() => {
+    if (authStatus === "authenticated") {
+      setLoader(true);
+    } else {
+      setLoader(false);
+    }
+  }, [authStatus]);
   return (
     <div className="login-component">
       <div>
@@ -33,6 +44,7 @@ function Login() {
           </Authenticator>
         </div>
       </div>
+      <Loader show={loader} />
     </div>
   );
 }
