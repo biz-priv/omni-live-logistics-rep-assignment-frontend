@@ -1,9 +1,37 @@
-import { Header } from "../../components";
-import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
+import { Header, Loader } from "../../components";
+import { useEffect, useState } from "react";
 import "./login.css";
+import { Amplify } from "aws-amplify";
+import { Authenticator, useAuthenticator } from "@aws-amplify/ui-react";
+import { Navigate } from "react-router-dom";
+import "@aws-amplify/ui-react/styles.css";
+
+Amplify.configure({
+  Auth: {
+    Cognito: {
+      identityPoolId: `${process.env.REACT_APP_IDENTITY_POOL_ID}`,
+      userPoolClientId: `${process.env.REACT_APP_USERPOOL_CLIENT_ID}`,
+      userPoolId: `${process.env.REACT_APP_USERPOOL_ID}`,
+      signUpVerificationMethod: "code",
+      loginWith: {
+        email: true,
+      },
+      region: `${process.env.REACT_APP_USERPOOL_REGION}`,
+    },
+  },
+});
 
 function Login() {
+  const { authStatus } = useAuthenticator((context) => [context.authStatus]);
+  const [loader, setLoader] = useState(false);
+
+  useEffect(() => {
+    if (authStatus === "authenticated") {
+      setLoader(true);
+    } else {
+      setLoader(false);
+    }
+  }, [authStatus]);
   return (
     <div className="login-component">
       <div>
@@ -11,35 +39,12 @@ function Login() {
       </div>
       <div className="login-component-middle">
         <div className="login-component-middle-inner">
-          <Form>
-            <div className="login-component-form-header">
-              <h3>Welcome back!</h3>
-            </div>
-
-            <Form.Group className="mb-3" controlId="formBasicEmail">
-              <Form.Label>Email</Form.Label>
-              <Form.Control
-                type="email"
-                placeholder="Enter your email address"
-              />
-            </Form.Group>
-
-            <Form.Group className="mb-3" controlId="formBasicPassword">
-              <Form.Label>Password</Form.Label>
-              <Form.Control type="password" placeholder="Password" />
-            </Form.Group>
-            <div className="login-component-form-button">
-              <Button
-                variant="primary"
-                type="submit"
-                id="login-component-form-button"
-              >
-                Login
-              </Button>
-            </div>
-          </Form>
+          <Authenticator loginMechanisms={["email", "username"]}>
+            {() => <Navigate to="/dashboard" />}
+          </Authenticator>
         </div>
       </div>
+      <Loader show={loader} />
     </div>
   );
 }

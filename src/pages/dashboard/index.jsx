@@ -1,5 +1,5 @@
 import React from "react";
-import { Table, Header, ToggleSwitch, PopOver } from "../../components";
+import { Table, Header, ToggleSwitch, PopOver, Loader } from "../../components";
 import "./dashboard.css";
 import cancellation from "../../assets/icons/cancellation.svg";
 import checkmark from "../../assets/icons/checkmark.svg";

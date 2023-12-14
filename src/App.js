@@ -1,18 +1,21 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 import { Login, Dashboard } from "./pages";
-import { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { useAuthenticator } from "@aws-amplify/ui-react";
 
 function App() {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-
+  const { user } = useAuthenticator((context) => [context.user]);
   return (
     <Routes>
       <Route
         path="/login"
-        element={!isAuthenticated ? <Login /> : <Navigate to="/dashboard" />}
+        element={!user ? <Login /> : <Navigate to="/dashboard" />}
       />
-      <Route path="/dashboard" element={<Dashboard />}></Route>
+      <Route path="/" element={!user ? <Login /> : <Dashboard />}></Route>
+      <Route
+        path="/dashboard"
+        element={user ? <Dashboard /> : <Navigate to="/login" />}
+      ></Route>
     </Routes>
   );
 }
