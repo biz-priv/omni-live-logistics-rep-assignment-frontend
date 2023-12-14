@@ -6,11 +6,6 @@
   }
   
 .login-component-middle-inner {
-    background-color: rgba(205, 205, 205, 1);
-    padding: 3rem 2rem;
-    border-radius: 0.5rem;
-    min-width: 320px;
-    width: 30%;
     position: absolute;
     top: 30%;
 }
