@@ -8,10 +8,19 @@ import auth from '../amplifyconfiguration.json'
 
 import '@aws-amplify/ui-react/styles.css';
 Amplify.configure({
-  Auth: {"region": "us-east-1",
-  "userPoolId": "us-east-1_nH3rxLIdf",
-  "userPoolWebClientId": "4baj7sgouh0r13pa0ohitvv2c",}
-})
+    Auth: {
+        Cognito: {
+            identityPoolId: "us-east-1:99dcdc3f-fdd8-4338-91f0-9cfc269cf3ee",
+            userPoolClientId: "4baj7sgouh0r13pa0ohitvv2c",
+            userPoolId: "us-east-1_nH3rxLIdf",
+            signUpVerificationMethod: "code",
+            loginWith: {
+                email: true,
+            },
+            region: "us-east-1",
+        },
+    },
+});
 
 // function Login() {
 //   return (
@@ -55,16 +64,16 @@ Amplify.configure({
 // }
 
 function Login() {
-  return (
-    <Authenticator loginMechanisms={['username','email']}>
-      {({ signOut, user }) => (
-        <main>
-          <h1>Hello {user.username}</h1>
-          <button onClick={signOut}>Sign out</button>
-        </main>
-      )}
-    </Authenticator>
-  );
+    return (
+        <Authenticator loginMechanisms={['username','email']}>
+            {({ signOut, user }) => (
+                <main>
+                    <h1>Hello {user.username}</h1>
+                    <button onClick={signOut}>Sign out</button>
+                </main>
+            )}
+        </Authenticator>
+    );
 }
 
 export default Login;
