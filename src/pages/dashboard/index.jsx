@@ -1,33 +1,12 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Table, Header, ToggleSwitch, PopOver, Loader } from "../../components";
 import "./dashboard.css";
 import cancellation from "../../assets/icons/cancellation.svg";
 import checkmark from "../../assets/icons/checkmark.svg";
+import { DashboardSearchRequest, ToggleSelect } from "../../Helper/api";
 
 function Dashboard() {
-  const products = [
-    {
-      isEligible: 1,
-      user: "gh0",
-      tracking: "86.8%",
-      on_time: "86.8%",
-      in_office: 1,
-    },
-    {
-      isEligible: 1,
-      user: "gh0",
-      tracking: "86.8%",
-      on_time: "86.8%",
-      in_office: 0,
-    },
-    {
-      isEligible: 1,
-      user: "gh0",
-      tracking: "86.8%",
-      on_time: "86.8%",
-      in_office: 0,
-    },
-  ];
+  const [dashboardData, setDashboardData] = useState([]);
 
   const columns = [
     {
@@ -52,41 +31,67 @@ function Dashboard() {
           </span>
         </div>
       ),
-      formatter: (cell) => (
+      formatter: (cell, row) => (
         <div id="column-eligibilty">
-          {cell ? <img src={cancellation} alt="" /> : <img src={checkmark} />}
+          {row.inOffice === "yes" && row.qualified === "true" ? (
+            <img src={checkmark} />
+          ) : (
+            <img src={cancellation} alt="" />
+          )}
         </div>
       ),
     },
     {
-      dataField: "user",
+      dataField: "user_id",
       text: "User",
     },
     {
-      dataField: "tracking",
+      dataField: "track_counter",
       text: "Tracking %",
     },
     {
-      dataField: "on_time",
+      dataField: "ontime_counter",
       text: "On Time %",
     },
     {
-      dataField: "in_office",
+      dataField: "inOffice",
       text: "In Office",
-      formatter: (cell) => (
+      formatter: (cell, row) => (
         <div id="column-in-office">
-          <ToggleSwitch checked={!!cell} />
+          <ToggleSwitch
+            checked={cell === "yes"}
+            onChange={(e) => handlechange(row.user_id, e.target.checked)}
+          />
         </div>
       ),
     },
   ];
+
+  const fetchData = async () => {
+    const data = await DashboardSearchRequest();
+    console.info("recieved data",data);
+    setDashboardData(data.data);
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const handlechange = async (id, value) => {
+    const params = {
+      user_id: id,
+      toggle: value ? "yes" : "NO",
+    };
+    await ToggleSelect(params)
+    fetchData()
+  };
 
   return (
     <>
       <Header />
       <div className="dashoard-component">
         <div className="dashboard-component-inner">
-          <Table id="id" columns={columns} data={products} />
+          <Table id="id" columns={columns} data={dashboardData} />
         </div>
       </div>
     </>
