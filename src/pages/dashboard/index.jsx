@@ -69,6 +69,7 @@ function Dashboard() {
   ];
 
   const fetchData = async () => {
+    setLoader(true)
     const data = await DashboardSearchRequest();
     console.info("recieved data",data);
     setDashboardData(data.data);
