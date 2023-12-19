@@ -7,6 +7,7 @@ import { DashboardSearchRequest, ToggleSelect } from "../../Helper/api";
 
 function Dashboard() {
   const [dashboardData, setDashboardData] = useState([]);
+  const [loader, setLoader] = useState(false);
 
   const columns = [
     {
@@ -71,6 +72,7 @@ function Dashboard() {
     const data = await DashboardSearchRequest();
     console.info("recieved data",data);
     setDashboardData(data.data);
+    setLoader(false)
   };
 
   useEffect(() => {
@@ -78,6 +80,7 @@ function Dashboard() {
   }, []);
 
   const handlechange = async (id, value) => {
+    setLoader(true)
     const params = {
       user_id: id,
       toggle: value ? "yes" : "NO",
@@ -93,6 +96,7 @@ function Dashboard() {
         <div className="dashboard-component-inner">
           <Table id="id" columns={columns} data={dashboardData} />
         </div>
+        <Loader show={loader} />
       </div>
     </>
   );
