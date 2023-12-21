@@ -47,11 +47,11 @@ function Dashboard() {
       text: "User",
     },
     {
-      dataField: "track_counter",
+      dataField: "tracking",
       text: "Tracking %",
     },
     {
-      dataField: "ontime_counter",
+      dataField: "ontime",
       text: "On Time %",
     },
     {
@@ -71,7 +71,6 @@ function Dashboard() {
   const fetchData = async () => {
     setLoader(true)
     const data = await DashboardSearchRequest();
-    console.info("recieved data",data);
     setDashboardData(data.data);
     setLoader(false)
   };
@@ -84,7 +83,7 @@ function Dashboard() {
     setLoader(true)
     const params = {
       user_id: id,
-      toggle: value ? "yes" : "NO",
+      toggle: value ? "yes" : "no",
     };
     await ToggleSelect(params)
     fetchData()
