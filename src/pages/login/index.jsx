@@ -15,6 +15,7 @@ Amplify.configure({
       signUpVerificationMethod: "code",
       loginWith: {
         email: true,
+        username: true,
       },
       region: `${process.env.REACT_APP_USERPOOL_REGION}`,
     },
@@ -39,7 +40,7 @@ function Login() {
       </div>
       <div className="login-component-middle">
         <div className="login-component-middle-inner">
-          <Authenticator loginMechanisms={["email", "username"]}>
+          <Authenticator loginMechanisms={["email"]} hideSignUp >
             {() => <Navigate to="/dashboard" />}
           </Authenticator>
         </div>
