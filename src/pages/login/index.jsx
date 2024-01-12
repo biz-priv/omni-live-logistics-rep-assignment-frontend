@@ -15,7 +15,6 @@ Amplify.configure({
       signUpVerificationMethod: "code",
       loginWith: {
         email: true,
-        username: true,
       },
       region: `${process.env.REACT_APP_USERPOOL_REGION}`,
     },
@@ -25,7 +24,7 @@ Amplify.configure({
 function Login() {
   const { authStatus } = useAuthenticator((context) => [context.authStatus]);
   const [loader, setLoader] = useState(false);
-
+  console.log("env",process.env)
   useEffect(() => {
     if (authStatus === "authenticated") {
       setLoader(true);

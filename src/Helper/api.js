@@ -2,7 +2,7 @@ import { apiConfig } from "./config";
 
 export const DashboardSearchRequest = async () => {
 	try {
-    let path = "/getdat";  
+    let path = "/getdata";  
 	const response = await apiConfig.get(path);
     	return { data:response.data};
 	} catch (error) {

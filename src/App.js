@@ -5,7 +5,7 @@ import { useAuthenticator } from "@aws-amplify/ui-react";
 
 function App() {
   const { user } = useAuthenticator((context) => [context.user]);
-  return (
+    return (
     <Routes>
       <Route
         path="/login"
