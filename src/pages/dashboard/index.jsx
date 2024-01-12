@@ -34,10 +34,10 @@ function Dashboard() {
       ),
       formatter: (cell, row) => (
         <div id="column-eligibilty">
-          {row.inOffice === "yes" && row.qualified === "true" ? (
-            <img src={checkmark} />
+          {row.inOffice === "yes" && row.check === true ? (
+            <img src={checkmark} alt="checkmark"/>
           ) : (
-            <img src={cancellation} alt="" />
+            <img src={cancellation} alt="cancellation" />
           )}
         </div>
       ),
