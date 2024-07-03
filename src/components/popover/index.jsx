@@ -1,3 +1,10 @@
+/* 
+* File: src\components\popover\index.jsx
+* Project: Omni-Live-logistics-rep-assignment
+* Author: Bizcloud Experts
+* Date: 2024-01-12
+* Confidential and Proprietary
+*/
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Popover from "react-bootstrap/Popover";
 

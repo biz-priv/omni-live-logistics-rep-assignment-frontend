@@ -1,3 +1,10 @@
+/* 
+* File: src\components\loader\index.jsx
+* Project: Omni-Live-logistics-rep-assignment
+* Author: Bizcloud Experts
+* Date: 2024-01-12
+* Confidential and Proprietary
+*/
 import { TailSpin } from "react-loader-spinner";
 import "./loader.css";
 export default function Loader({ show }) {

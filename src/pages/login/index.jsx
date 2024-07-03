@@ -1,3 +1,10 @@
+/* 
+* File: src\pages\login\index.jsx
+* Project: Omni-Live-logistics-rep-assignment
+* Author: Bizcloud Experts
+* Date: 2024-01-12
+* Confidential and Proprietary
+*/
 import { Header, Loader } from "../../components";
 import { useEffect, useState } from "react";
 import "./login.css";

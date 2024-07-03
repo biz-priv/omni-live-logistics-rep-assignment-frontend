@@ -1,3 +1,10 @@
+/* 
+* File: src\pages\dashboard\index.jsx
+* Project: Omni-Live-logistics-rep-assignment
+* Author: Bizcloud Experts
+* Date: 2024-01-12
+* Confidential and Proprietary
+*/
 import React, { useEffect, useState } from "react";
 import { Table, Header, ToggleSwitch, PopOver, Loader } from "../../components";
 import "./dashboard.css";

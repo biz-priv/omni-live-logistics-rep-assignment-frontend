@@ -1,3 +1,9 @@
+/* 
+* File: src\App.js
+* Author: Bizcloud Experts
+* Date: 2024-01-12
+* Confidential and Proprietary
+*/
 import { Routes, Route, Navigate } from "react-router-dom";
 import { Login, Dashboard } from "./pages";
 import "bootstrap/dist/css/bootstrap.min.css";

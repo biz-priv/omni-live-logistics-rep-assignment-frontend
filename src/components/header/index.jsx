@@ -1,3 +1,10 @@
+/* 
+* File: src\components\header\index.jsx
+* Project: Omni-Live-logistics-rep-assignment
+* Author: Bizcloud Experts
+* Date: 2024-01-12
+* Confidential and Proprietary
+*/
 import mainLogo from "../../assets/icons/logo.svg";
 import React, { useState } from "react";
 import "./header.css";

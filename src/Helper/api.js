@@ -1,3 +1,10 @@
+/* 
+* File: src\Helper\api.js
+* Project: Omni-Live-logistics-rep-assignment
+* Author: Bizcloud Experts
+* Date: 2024-01-12
+* Confidential and Proprietary
+*/
 import { apiConfig } from "./config";
 
 export const DashboardSearchRequest = async () => {
